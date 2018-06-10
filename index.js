@@ -24,20 +24,98 @@ connection.connect(function(error){
 
 });
 
-app.get('/', function(req,res){
+app.get('/insert', function(req,res,next){
 
-  connection.query("SELECT * FROM hello",function(error,rows,fields){
+  connection.query('INSERT INTO hello (id, name, second, third) VALUES ((?),(?),(?),(?))',[2,'khan','khan','kham'],function(error,rows,fields)
+  {
    if(error)
    {
      console.log('error in the database');
    }
    else{
      console.log('successfull entry');
-     console.log(rows[0].name);
+     console.log(rows.name);
      res.send(rows);
    }
   });
 
 });
+
+
+app.get('/show', function(req,res){
+
+  connection.query('SELECT * FROM hello',function(error,rows,fields)
+  {
+   if(error)
+   {
+     console.log('error in the database');
+   }
+   else{
+     console.log('successfull entry');
+     console.log(rows);
+     res.send(rows);
+   }
+  });
+
+});
+
+
+app.get('/query', function(req,res){
+
+  connection.query('SELECT * FROM hello WHERE id = ?',[2],function(error,rows,fields)
+  {
+   if(error)
+   {
+     console.log('error in the database');
+   }
+   else{
+     console.log('successfull entry');
+     console.log(rows);
+     res.send(rows);
+   }
+  });
+
+});
+
+
+app.get('/query2', function(req,res){
+
+  connection.query('SELECT * FROM hello WHERE id = 2',function(error,rows,fields)
+  {
+   if(error)
+   {
+     console.log('error in the database');
+   }
+   else{
+     console.log('successfull entry');
+     console.log(rows);
+     res.send(rows);
+   }
+  });
+
+});
+
+
+app.get('/query2', function(req,res){
+
+  connection.query('SELECT * FROM hello WHERE name = arshil',function(error,rows,fields)
+  {
+   if(error)
+   {
+     console.log('error in the database');
+   }
+   else{
+     console.log('successfull entry');
+     console.log(rows);
+     res.send(rows);
+   }
+  });
+
+});
+
+
+
+
+
 
 app.listen(3000);
