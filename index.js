@@ -109,13 +109,10 @@ app.get('/query2', function(req,res){
      console.log(rows);
      res.send(rows);
    }
+  //  connection.end(); //put connection.end() at the end of callback not in the code directly
   });
 
-});
-
-
-
-
+}); 
 
 
 app.listen(3000);
