@@ -6,7 +6,7 @@ var connection = mysql.createConnection({
 
   host: 'localhost',
   user: 'root',
-  database: 'learning',
+  database: 'learn',
   port: 3308
 
 });
@@ -26,15 +26,14 @@ connection.connect(function(error){
 
 app.get('/insert', function(req,res,next){
 
-  connection.query('INSERT INTO hello (id, name, second, third) VALUES ((?),(?),(?),(?))',[2,'khan','khan','kham'],function(error,rows,fields)
+  connection.query('INSERT INTO hello (id, name, second, third) VALUES ((?),(?),(?),(?))',[2,'arshil','khan','sadaf'],function(error,rows,fields)
   {
    if(error)
    {
      console.log('error in the database');
    }
    else{
-     console.log('successfull entry');
-     console.log(rows.name);
+    
      res.send(rows);
    }
   });
@@ -42,22 +41,7 @@ app.get('/insert', function(req,res,next){
 });
 
 
-app.get('/show', function(req,res){
 
-  connection.query('SELECT * FROM hello',function(error,rows,fields)
-  {
-   if(error)
-   {
-     console.log('error in the database');
-   }
-   else{
-     console.log('successfull entry');
-     console.log(rows);
-     res.send(rows);
-   }
-  });
-
-});
 
 
 app.get('/query', function(req,res){
@@ -67,6 +51,8 @@ app.get('/query', function(req,res){
    if(error)
    {
      console.log('error in the database');
+          console.log('error in the database');
+
    }
    else{
      console.log('successfull entry');
@@ -80,15 +66,13 @@ app.get('/query', function(req,res){
 
 app.get('/query2', function(req,res){
 
-  connection.query('SELECT * FROM hello WHERE id = 2',function(error,rows,fields)
+  connection.query('SELECT * FROM hello WHERE id = 5',function(error,rows,fields)
   {
    if(error)
    {
      console.log('error in the database');
    }
    else{
-     console.log('successfull entry');
-     console.log(rows);
      res.send(rows);
    }
   });
@@ -98,7 +82,7 @@ app.get('/query2', function(req,res){
 
 app.get('/query2', function(req,res){
 
-  connection.query('SELECT * FROM hello WHERE name = arshil',function(error,rows,fields)
+  connection.query('SELECT * FROM hello WHERE name = 'pratyush',function(error,rows,fields)
   {
    if(error)
    {
@@ -109,7 +93,6 @@ app.get('/query2', function(req,res){
      console.log(rows);
      res.send(rows);
    }
-  //  connection.end(); //put connection.end() at the end of callback not in the code directly
   });
 
 }); 
